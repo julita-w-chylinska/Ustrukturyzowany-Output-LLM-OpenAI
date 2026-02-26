@@ -56,15 +56,16 @@ ChatGPT
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/aff8ef7d-2f6c-4c67-a50f-45f3a486fbec" />
 
 Perpexity
-
+  
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/a32b35f0-af01-45e0-afa9-b0e4e3a38ad1" />
+  
 (w tym przypadku jeszcze propozycje dopytania)
 
 deepseek
-<br>
+  
 <img width="900" alt="image" src="https://github.com/user-attachments/assets/6ca11826-c42f-4437-960a-09e25d6970bc" />
-
-<br> <br> <br>
+  
+## Jak na to pytanie odpowiedziałby LLM z użyciem API?
 
 ```Python
 response = client.chat.completions.create(
@@ -78,18 +79,128 @@ response.choices[0].message.content
 ```
 
 ```Python
+'Smok Wawelski, legenda związana z Krakowem, mieszkał w jaskini znajdującej się pod Wawelem, na wzgórzu Wawelskim. Jaskinia, znana jako "Smokowa Jama", jest teraz popularną atrakcją turystyczną. W legendach smok terroryzował mieszkańców Krakowa, aż został pokonany przez księcia Kraka, co zakończyło jego rządy terroru. Współczesny Kraków często wspomina tę legendę, a także można tam znaleźć pomnik Smoka Wawelskiego, który czasami "zionie" ogniem.'
+```
+  
+## A gdyby zadać mu dokładnie takie samo pytanie 5 razy z rzędu?
+  
+```Python
+response = client.chat.completions.create(
+    model = "gpt-4o-mini-2024-07-18",
+    messages = [
+        {"role": "user", "content": "Gdzie mieszka Smok Wawelski?"}
+    ],
+    n = 5
+)
+
+for ch in response.choices:
+    print(ch.message.content)
+    print("=" * 10)
+```
+  
+```Python
+
+  
+Widzimy, że każdy z tych odpowiedzi zawiera różne informacje. Nie są one ze sobą sprzeczne, jednak ... rożne obszary/zakresy.
+
+Wyobraźmy sobie, że chodzi nam w tym pytaniu o konkretny adres, gdzie Smoka Wawelskiego znajdziemy.
+  
+## Doprecyzowanie rodzaju informacji, którą chcemy uzyskać
+
+```Python
+response = client.chat.completions.create(
+    model = "gpt-4o-mini-2024-07-18",
+    messages = [
+        {"role": "user", "content": "Gdzie mieszka Smok Wawelski? Zwróć adres."}
+    ],
+    n = 5
+)
+
+for ch in response.choices:
+    print(ch.message.content)
+    print("=" * 10)
 ```
 
 ```Python
+Smok Wawelski mieszka na Wawelu, w Krakowie, w Polsce. Jego legendarna jaskinia znajduje się pod Wzgórzem Wawelskim, w pobliżu zamku królewskiego. W rzeczywistości nie ma konkretnego adresu dla smoka, ponieważ jest to postać z legendy, ale ogólnie można powiedzieć, że jego „dom” to Zamek Wawelski, Wawel 5, 31-001 Kraków, Polska.
+==========
+Smok Wawelski mieszka w Krakowie, pod Wawelem, przy Wawel 5. To miejsce jest znane z legendy o Smoku Wawelskim, który według tradycji zamieszkiwał jaskinię pod Wzgórzem Wawelskim.
+==========
+Smok Wawelski mieszka na Wawelu, w Krakowie, w Polsce. Jego legendarne miejsce zamieszkania to jaskinia w pobliżu Wawelskiego Zamku, w okolicach brzegu Wisły. Dokładny adres to: Wawel 5, 31-001 Kraków, Polska.
+==========
+Smok Wawelski mieszka w Krakowie, a jego legenda związana jest z Wzgórzem Wawelskim. Wszyscy znają go jako mieszkańca pod Wawelskim zamkiem, który według legendy miał terroryzować okoliczne tereny. Adres, który można podać, to: Wawel, 31-001 Kraków, Polska.
+==========
+Smok Wawelski mieszka w Krakowie, a jego legendarna siedziba znajduje się pod Wzgórzem Wawelskim, na którym stoi Zamek Królewski na Wawelu. Jeśli chcesz konkretny adres, można podać: Wawel 5, 31-001 Kraków, Polska.
+==========
+```
+
+Mimo doprecyzowania prośby o zwróceniu adresu, ponownie każda odpowiedź wygląda inaczej, nie wszystkie zawierają pełny adres razem z kodem pocztowym, który może być nam potrzebny.
+
+## Określmy teraz te informacje jeszcze precyzyjniej
+  
+```Python
+prompt = """
+Gdzie mieszka Smok Wawelski? Zwróć tylko te informacje:
+    ulica
+    miejscowość
+    województwo
+    kod pocztowy
+"""
+
+response = client.chat.completions.create(
+    model = "gpt-4o-mini-2024-07-18",
+    messages = [
+        {"role": "user", "content": prompt}
+    ],
+    n = 5
+)
+
+for ch in response.choices:
+    print(ch.message.content)
+    print("=" * 10)
 ```
 
 ```Python
-```
+Smok Wawelski mieszka w:
 
-```Python
-```
+- ulica: Wawel
+- miejscowość: Kraków
+- województwo: małopolskie
+- kod pocztowy: 31-001
+==========
+Smok Wawelski mieszka w:
 
+- ulica: Wawel
+- miejscowość: Kraków
+- województwo: małopolskie
+- kod pocztowy: 31-001
+==========
+Smok Wawelski mieszka w:
+
+- ulica: Wawel 5
+- miejscowość: Kraków
+- województwo: małopolskie
+- kod pocztowy: 31-001
+==========
+Smok Wawelski mieszka w:
+
+- ulica: Wawel
+- miejscowość: Kraków
+- województwo: małopolskie
+- kod pocztowy: 31-001
+==========
+Smok Wawelski mieszka w:
+
+- ulica: Wawel
+- miejscowość: Kraków
+- województwo: małopolskie
+- kod pocztowy: 31-001
+==========
+```
+  
+  
 ```Python
+
 ```
 
 ```Python
