@@ -7,11 +7,13 @@ Jest to przeszkodą, jeśli chcemy za każdym razem otrzymywać taką samą stru
 Ten projekt ma postać testowania możliwości tych funkcjonalności i będzie dotyczył API OpenAI, modelu gpt-4o-mini-2024-07-18. Używam do niego języka polskiego ze względu na używanie tego języka do promptów/inputów.
 
 
-## Pięć niezbędnych kroki do rozpoczęcia pracy z API OpenAI w VS Code [ogólnie nazwać]
+## Pięć niezbędnych kroków do rozpoczęcia pracy z API OpenAI w VS Code [ogólnie nazwać]
 
 1. Utworzenie płatnego klucza API na platformie OpenAI
 
-2. Instalacja biblioteki (?) openai w VS Code [ogólnie nazwać]
+https://platform.openai.com/api-keys
+
+3. Instalacja biblioteki (?) openai w VS Code [ogólnie nazwać]
 
 ```Python
 pip install openai
@@ -33,15 +35,43 @@ from openai import OpenAI
 ``` Python
 client = OpenAI()
 ```
-
+## Pierwsze próby wygenerowania odpowiedzi
 
 ```Python
+resp = client.responses.create(
+    model="gpt-4o-mini-2024-07-18",
+    input="Test: jeśli to działa, odpowiedz jednym zdaniem po polsku."
+)
+
+print(resp.output_text)
 ```
 
 ```Python
+Działa, wszystko w porządku!
 ```
+## Jak na pytanie "Gdzie mieszka Smok Wawelski?" odpowiedzą trzy różne modele (z różnych UI)
+
+ChatGPT
+<img width="1407" height="682" alt="image" src="https://github.com/user-attachments/assets/aff8ef7d-2f6c-4c67-a50f-45f3a486fbec" />
+
+Perpexity
+<img width="1314" height="725" alt="image" src="https://github.com/user-attachments/assets/a32b35f0-af01-45e0-afa9-b0e4e3a38ad1" />
+(w tym przypadku jeszcze propozycje dopytania)
+
+deepseek
+<img width="1081" height="1012" alt="image" src="https://github.com/user-attachments/assets/6ca11826-c42f-4437-960a-09e25d6970bc" />
+
+<br> <br> <br>
 
 ```Python
+response = client.chat.completions.create(
+    model = "gpt-4o-mini-2024-07-18",
+    messages = [
+        {"role": "user", "content": "Gdzie mieszka Smok Wawelski?"}
+    ]
+)
+
+response.choices[0].message.content
 ```
 
 ```Python
