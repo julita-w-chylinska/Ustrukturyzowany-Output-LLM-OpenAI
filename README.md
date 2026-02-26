@@ -97,10 +97,8 @@ for ch in response.choices:
     print(ch.message.content)
     print("=" * 10)
 ```
-  
-```Python
+    
 
-  
 Widzimy, że każdy z tych odpowiedzi zawiera różne informacje. Nie są one ze sobą sprzeczne, jednak ... rożne obszary/zakresy.
 
 Wyobraźmy sobie, że chodzi nam w tym pytaniu o konkretny adres, gdzie Smoka Wawelskiego znajdziemy.
@@ -141,10 +139,10 @@ Mimo doprecyzowania prośby o zwróceniu adresu, ponownie każda odpowiedź wygl
 ```Python
 prompt = """
 Gdzie mieszka Smok Wawelski? Zwróć tylko te informacje:
-    ulica
-    miejscowość
-    województwo
-    kod pocztowy
+- ulica
+- miejscowość
+- województwo
+- kod pocztowy
 """
 
 response = client.chat.completions.create(
@@ -198,9 +196,82 @@ Smok Wawelski mieszka w:
 ==========
 ```
   
-  
-```Python
+Teraz informacje mają już konkretną strukturę, jednak zwróćmy uwagę, że jedna z odpowiedzi w wierszu "ulica" zawiera numer budynku, reszta samą nazwę ulicy. Co jednak jeśli potrzebowalibyśmy odwołać się do konkretnej informacji z tego outputu, chcąc ją gdzieś wykorzystać? Możemy poprosić LLM'a o zwrócenie odpowiedzi w formacie JSON.
 
+## Output w formacie JSON
+
+Dopisujemy do naszego prompta jedynie zdanie "Zwróć to jako JSON."
+
+```Python
+prompt = """
+Gdzie mieszka Smok Wawelski? Zwróć tylko te informacje:
+– ulica
+– miejscowość
+– województwo
+– kod pocztowy
+
+Zwróć to jako JSON.
+"""
+
+response = client.chat.completions.create(
+    model = "gpt-4o-mini-2024-07-18",
+    messages = [
+        {"role": "user", "content": prompt}
+    ],
+    n = 5
+)
+
+for ch in response.choices:
+    print(ch.message.content)
+    print("=" * 10)
+```
+    
+```Python
+```json
+{
+  "ulica": "Wawel",
+  "miejscowość": "Kraków",
+  "województwo": "Małopolskie",
+  "kod_pocztowy": "31-001"
+}
+```
+==========
+```json
+{
+  "ulica": "Wawel",
+  "miejscowość": "Kraków",
+  "województwo": "małopolskie",
+  "kod_pocztowy": "31-001"
+}
+```
+==========
+```json
+{
+  "ulica": "Wawel",
+  "miejscowość": "Kraków",
+  "województwo": "małopolskie",
+  "kod_pocztowy": "31-001"
+}
+```
+==========
+```json
+{
+  "ulica": "Wawel",
+  "miejscowość": "Kraków",
+  "województwo": "Małopolskie",
+  "kod pocztowy": "31-001"
+}
+```
+==========
+```json
+{
+  "ulica": "Wawel",
+  "miejscowość": "Kraków",
+  "województwo": "Małopolskie",
+  "kod_pocztowy": "31-001"
+}
+```
+==========
 ```
 
 ```Python
