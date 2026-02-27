@@ -99,7 +99,7 @@ for ch in response.choices:
 ```
   
 Output:
-```Python
+```text
 Smok Wawelski, postać z polskich legend, według tradycji mieszkał w jaskini pod Wawelem w Krakowie, nad rzeką Wisłą. Jaskinia ta nazywana jest Smoczą Jamą. Legenda głosi, że smok terroryzował mieszkańców miasta, aż został pokonany przez dzielnego rycerza, co przyczyniło się do upadku jego panowania nad Krakowem. Smok Wawelski stał się symbolem miasta i przyciąga turystów z całego świata.
 ==========
 Smok Wawelski, legendarny smok krakowski, według polskiej legendy mieszkał w jaskini pod Wawelem, w pobliżu Zamku Królewskiego na Wawelu w Krakowie. Jaskinia ta, znana jako Jaskinia Smoka Wawelskiego, jest popularnym miejscem turystycznym i znajduje się u podnóża wzgórza wawelskiego, nad Wisłą. Według legendy smok terroryzował mieszkańców Krakowa, aż został pokonany przez dzielnego rycerza – Szewczyka Dratewkę.
