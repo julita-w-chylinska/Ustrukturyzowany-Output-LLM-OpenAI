@@ -479,7 +479,7 @@ Odpowiedź:
 31-001
 ```
 
-Dodatkowo, jeśli poszczególne części odpowiedzi LLM-a miałaby spełnić jakieś konkretne wymogi, np. co do ich formatu, możemy je dopisać za pomocą obiektu Field z biblioteki Pydantic. W poniższym przykładzie narzucamy format na informację o ulicy, miejscowości/mieście i województwie/stanie:
+Dodatkowo, jeśli poszczególne części odpowiedzi LLM-a miałyby spełnić jakieś konkretne wymogi, np. co do ich formatu, możemy je dopisać za pomocą obiektu Field z biblioteki Pydantic. W poniższym przykładzie narzucamy format na informację o ulicy, miejscowości/mieście i województwie/stanie:
 
 ```Python
 from pydantic import Field
