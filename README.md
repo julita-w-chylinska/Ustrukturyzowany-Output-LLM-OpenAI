@@ -100,15 +100,15 @@ for ch in response.choices:
   
 Output:
 ```Python
-Smok Wawelski mieszka na Wawelu, w Krakowie, w Polsce. Jego legendarna jaskinia znajduje się pod Wzgórzem Wawelskim, w pobliżu zamku królewskiego. W rzeczywistości nie ma konkretnego adresu dla smoka, ponieważ jest to postać z legendy, ale ogólnie można powiedzieć, że jego „dom” to Zamek Wawelski, Wawel 5, 31-001 Kraków, Polska.
+Smok Wawelski, postać z polskich legend, według tradycji mieszkał w jaskini pod Wawelem w Krakowie, nad rzeką Wisłą. Jaskinia ta nazywana jest Smoczą Jamą. Legenda głosi, że smok terroryzował mieszkańców miasta, aż został pokonany przez dzielnego rycerza, co przyczyniło się do upadku jego panowania nad Krakowem. Smok Wawelski stał się symbolem miasta i przyciąga turystów z całego świata.
 ==========
-Smok Wawelski mieszka w Krakowie, pod Wawelem, przy Wawel 5. To miejsce jest znane z legendy o Smoku Wawelskim, który według tradycji zamieszkiwał jaskinię pod Wzgórzem Wawelskim.
+Smok Wawelski, legendarny smok krakowski, według polskiej legendy mieszkał w jaskini pod Wawelem, w pobliżu Zamku Królewskiego na Wawelu w Krakowie. Jaskinia ta, znana jako Jaskinia Smoka Wawelskiego, jest popularnym miejscem turystycznym i znajduje się u podnóża wzgórza wawelskiego, nad Wisłą. Według legendy smok terroryzował mieszkańców Krakowa, aż został pokonany przez dzielnego rycerza – Szewczyka Dratewkę.
 ==========
-Smok Wawelski mieszka na Wawelu, w Krakowie, w Polsce. Jego legendarne miejsce zamieszkania to jaskinia w pobliżu Wawelskiego Zamku, w okolicach brzegu Wisły. Dokładny adres to: Wawel 5, 31-001 Kraków, Polska.
+Smok Wawelski mieszka w grocie na Wawelu, która znajduje się u podnóża Wawelu w Krakowie. Legenda głosi, że smok terroryzował mieszkańców miasta, aż został pokonany przez dzielnego rycerza, według niektórych wersji historycznych - przez Krakusa. Grota smoka jest popularnym miejscem turystycznym, a przy wyjściu z niej znajduje się pomnik Smoka Wawelskiego, który zionie ogniem.
 ==========
-Smok Wawelski mieszka w Krakowie, a jego legenda związana jest z Wzgórzem Wawelskim. Wszyscy znają go jako mieszkańca pod Wawelskim zamkiem, który według legendy miał terroryzować okoliczne tereny. Adres, który można podać, to: Wawel, 31-001 Kraków, Polska.
+Smok Wawelski mieszka w jaskini pod Wzgórzem Wawelskim w Krakowie, w Polsce. Jest to popularna postać z polskiej legendy, według której smok terroryzował mieszkańców Krakowa, aż został pokonany przez dzielnego rycerza, w zależności od wersji opowieści, zazwyczaj jest to Krakus lub Szewczyk Dratewka. Jaskinia smoka, znana jako Smocza Jama, jest dziś turystyczną atrakcją, którą można zwiedzać.
 ==========
-Smok Wawelski mieszka w Krakowie, a jego legendarna siedziba znajduje się pod Wzgórzem Wawelskim, na którym stoi Zamek Królewski na Wawelu. Jeśli chcesz konkretny adres, można podać: Wawel 5, 31-001 Kraków, Polska.
+Smok Wawelski to legendarna postać związana z Krakowem, a według legendy mieszkał w jaskini u podnóża Wawelu, w tzw. Jaskini Smoczej. Jaskinia ta znajduje się na Wawelu, przy zamku królewskim. To właśnie tam według legendy smok terroryzował mieszkańców, aż został pokonany przez dzielnego rycerza, który podjął się wyzwania, by go zlikwidować. Dziś Jaskinia Smocza jest popularnym miejscem turystycznym w Krakowie.
 ==========
 ```
   
