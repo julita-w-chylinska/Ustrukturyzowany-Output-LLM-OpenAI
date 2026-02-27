@@ -2,9 +2,9 @@
 
 Duże modele językowe (Large Language Models, LLM) mają to do siebie, że przy użyciu tych samych promptów generują różne odpowiedzi, nie tylko pomiędzy różnymi modelami, ale też w obrębie tego samego. 
 
-Jest to przeszkodą, jeśli chcemy za każdym razem otrzymywać odpowiedzi o takiej samej strukturze. Dodatkowo LLM’y mogą generować różną ilość tekstu i podawać informacje, których nie potrzebujemy. Z pomocą przychodzi tu API konkretnych modeli LLM'ów i dostępne w nim mechanizmy Function Calling i Structured Output. 
+Jest to przeszkodą, jeśli chcemy za każdym razem otrzymywać odpowiedzi o takiej samej strukturze. Dodatkowo LLM-y mogą generować różną ilość tekstu i podawać informacje, których nie potrzebujemy. Z pomocą przychodzi tu API konkretnych modeli LLM-ów i dostępne w nim mechanizmy Function Calling i Structured Output. 
 
-Ten projekt ma postać testowania możliwości tych funkcjonalności i dotyczy API OpenAI, modelu gpt-4o-mini-2024-07-18. W tym repozytorium będę poługiwać się językiem polskim ze względu na używanie tego języka do promptów w tym projekcie.
+Ten projekt ma postać testowania możliwości tych funkcjonalności i dotyczy API OpenAI, modelu gpt-4o-mini-2024-07-18. W tym repozytorium będę posługiwać się językiem polskim ze względu na używanie tego języka do promptów w tym projekcie.
 
 
 ## Pięć niezbędnych kroków do rozpoczęcia pracy z API OpenAI
@@ -58,7 +58,7 @@ Działa, wszystko w porządku!
   
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/aff8ef7d-2f6c-4c67-a50f-45f3a486fbec" />
   
-### Perpexity
+### Perplexity
   
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/a32b35f0-af01-45e0-afa9-b0e4e3a38ad1" />
   
@@ -135,7 +135,9 @@ for ch in response.choices:
     print(ch.message.content)
     print("=" * 10)
 ```
-
+  
+Odpowiedź:
+  
 ```text
 Smok Wawelski mieszka na Wawelu, w Krakowie, w Polsce. Jego legendarna jaskinia znajduje się pod Wzgórzem Wawelskim, w pobliżu zamku królewskiego. W rzeczywistości nie ma konkretnego adresu dla smoka, ponieważ jest to postać z legendy, ale ogólnie można powiedzieć, że jego „dom” to Zamek Wawelski, Wawel 5, 31-001 Kraków, Polska.
 ==========
@@ -152,7 +154,9 @@ Smok Wawelski mieszka w Krakowie, a jego legendarna siedziba znajduje się pod W
 Mimo doprecyzowania naszej prośby, ponownie pojawia się problem różniących się – nie wszystkie zawierają pełny adres razem wraz kodem pocztowym (którego możemy potrzebować).
 
 ## Określmy teraz te informacje jeszcze precyzyjniej
-  
+
+Tym razem wyszczególniamy w prompcie, jakich konkretnie informacji potrzebujemy:
+
 ```Python
 prompt = """
 Gdzie mieszka Smok Wawelski? Zwróć tylko te informacje:
@@ -174,7 +178,9 @@ for ch in response.choices:
     print(ch.message.content)
     print("=" * 10)
 ```
-
+  
+Odpowiedź:
+  
 ```text
 Smok Wawelski mieszka w:
 
@@ -213,7 +219,7 @@ Smok Wawelski mieszka w:
 ==========
 ```
   
-Teraz informacje mają już konkretną strukturę i odpowiedzi są stabilne. Co jednak jeśli potrzebowalibyśmy odwołać się do konkretnej informacji z tego outputu, chcąc ją gdzieś wykorzystać? Możemy poprosić LLM'a o zwrócenie odpowiedzi w formacie JSON.
+Tym razem informacje mają już konkretną strukturę a odpowiedzi są stabilne. Co jednak jeśli potrzebowalibyśmy odwołać się do konkretnej informacji z tego outputu, chcąc ją wykorzystać w kolejnych krokach? W tym celu możemy poprosić LLM-a o zwrócenie odpowiedzi w formacie JSON.
 
 ## Output w formacie JSON
 
@@ -242,7 +248,9 @@ for ch in response.choices:
     print(ch.message.content)
     print("=" * 10)
 ```
-    
+  
+Odpowiedź:
+      
 ````text
 ```json
 {
@@ -301,7 +309,7 @@ parsed_json = json.loads(
 )
 ```
     
-...pozwoliłoby to nam sięgnąć do konkretnej jej części, na przykład zapisując informację o miejscowości do zmiennej:
+...pozwoliłoby to nam sięgnąć do konkretnej jej części, na przykład przypisując miejscowość do zmiennej:
 
 ```Python
 smok_miejscowosc = parsed_json["miejscowość"]
@@ -312,11 +320,14 @@ Sprawdźmy, co zapisało się pod zmienną `smok_miejscowosc`:
 ```Python
 print(smok_miejscowosc)
 ```
+  
+Odpowiedź:
+  
 ```text
 Kraków
 ```
 
-Wykorzystując format JSON możemy również przekształcić odpowiedź LLM'a na ładny format:
+Wykorzystując format JSON możemy również przekształcić odpowiedź LLM-a na ładny format:
   
 ```Python
 parsed_json = json.loads(
@@ -326,7 +337,9 @@ parsed_json = json.loads(
 for k, v in parsed_json.items():
     print(f"{k}: {v}")
 ```
-
+  
+Odpowiedź:
+  
 ```text
 ulica: Smok Wawelski
 miejscowość: Kraków
@@ -334,11 +347,11 @@ województwo: Małopolskie
 kod pocztowy: 31-001
 ```
   
-Jednak czy istnieje jakieś natywne wsparcie, które zagwarantuje poprawne wyświetlanie ustruktyrozowanego outputu w JSON'ie (również przy tych bardziej rozbudowanych)? Z pomocą przychdodzi tu mechanizm Function Calling.
+Jednak czy istnieje jakieś natywne wsparcie, które zagwarantuje poprawne wyświetlanie ustrukturyzowanego outputu w JSON'ie (również przy tych bardziej rozbudowanych odpowiedziach)? Z pomocą przychodzi tu mechanizm Function Calling.
 
 ## Function Calling
 
-Na przykładzie sytuacji z poszukiwaniem przepisu na naleśniki wypróbujemy – poprzez parametr `functions` – przekazanie LLM'owi schematu, którego ma się trzymać podczas generowania odpowiedzi. Dodatkowo użyjemy wiadomości o roli `system` w parametrze `messages`, aby zdefiniować globalną instrukcję zachowania modelu (tzw. system prompt). Taka instrukcja działa jak nadrzędny kontekst dla całej rozmowy: narzuca, że asystent ma generować przepisy oraz preferować format JSON.
+Na przykładzie sytuacji z poszukiwaniem przepisu na naleśniki, wypróbujemy – poprzez parametr `functions` – przekazanie LLM-owi schematu, którego ma się trzymać podczas generowania odpowiedzi. Dodatkowo, użyjemy wiadomości o roli `system` w parametrze `messages`, aby zdefiniować globalną instrukcję zachowania modelu (tzw. system prompt). Taka instrukcja działa jak nadrzędny kontekst dla całej rozmowy: narzuca, że asystent ma generować przepisy oraz preferować format JSON.
 
 ```Python
 schema = {
@@ -367,17 +380,19 @@ response = client.chat.completions.create(
 )
 ```
 
-W ten sposób model zwraca wywołanie funkcji zamiast tekstu. Do samej odpowiedzi możemy dostać się wtedy w poniższy sposób (odwołując się do argumentu tej funkcji):
+W ten sposób model zamiast tekstu zwraca wywołanie funkcji. Do samej odpowiedzi możemy dostać się wtedy w poniższy sposób (odwołując się do argumentu tej funkcji):
   
 ```Python
 print(response.choices[0].message.function_call.arguments)
 ```
-
+  
+Odpowiedź:
+  
 ```text
 {"dish":"Naleśniki","ingredients":["1 szklanka mąki pszennej","2 jajka","1 i 1/2 szklanki mleka","1/4 szklanki wody gazowanej","szczypta soli","olej do smażenia","cukier (opcjonalnie)"],"steps":["W dużej misce wymieszaj mąkę i sól.","Dodaj jajka, mleko oraz wodę gazowaną i dokładnie wymieszaj, aż ciasto będzie gładkie.","Odstaw ciasto na około 30 minut, aby odpoczęło.","Rozgrzej patelnię z odrobiną oleju na średnim ogniu.","Wlej chochelkę ciasta na patelnię, a następnie przechyl ją, aby ciasto równomiernie pokryło dno patelni.","Smaż przez około 1-2 minuty, aż brzegi naleśnika będą lekko złote, a następnie obróć i smaż jeszcze przez 1-2 minuty z drugiej strony.","Powtarzaj, aż całe ciasto zostanie zużyte.","Podawaj naleśniki z ulubionymi dodatkami, takimi jak dżem, owoce czy bita śmietana."]}
 ```
 
-Parsując JSON'a w ten sposób:
+Następnie parsując JSON'a w ten sposób:
 
 ```Python
 args = json.loads(response.choices[0].message.function_call.arguments)
@@ -415,7 +430,7 @@ Dzięki Function Calling dostajemy output w sposób bardziej przewidywalny. Nie 
 
 ## Structured Output + Pydantic
 
-W celu ... należy zainstalować i zaimportować [...]
+W celu skorzystania z tej funkcjonalności, musimy wykonać najpierw następujące kroki:
   
 ```Python
 pip install instructor
@@ -432,7 +447,7 @@ client = instructor.from_openai(OpenAI())
 
 Wróćmy do przykładu z adresem Smoka Wawelskiego.
   
-Poprzez stworzenie klasy `Address` z obiektami określającymi informacje, które chcemy otrzymać od LLM'a, a następnie przekazanie tej klasy do parametru `response_model`:
+Poprzez stworzenie klasy `Address` z obiektami określającymi informacje, które chcemy otrzymać od LLM-a, a następnie przekazanie tej klasy do parametru `response_model`:
   
 ```Python
 class Address(BaseModel):
@@ -450,7 +465,7 @@ response = client.chat.completions.create(
 )
 ```
 
-... możemy w prosty sposób dotrzeć do informacji o samym kodzie pocztowym:
+...możemy w prosty sposób dotrzeć do informacji o samym kodzie pocztowym:
 
 ```Python
 print(response.postal_code)
@@ -460,9 +475,11 @@ print(response.postal_code)
 31-001
 ```
 
-Dodatkowo, jeśli poszczególne części odpowiedzi LLM'a miałaby spełnić jakieś konkretne wymogi, możemy je dopisać za pomocą obiektu Field z biblioteki Pydantic. W poniższym przykładzie narzucamy format na informację o ulicy, miejscowości/mieście i województwie/stanie:
+Dodatkowo, jeśli poszczególne części odpowiedzi LLM-a miałaby spełnić jakieś konkretne wymogi, np. co do ich formatu, możemy je dopisać za pomocą obiektu Field z biblioteki Pydantic. W poniższym przykładzie narzucamy format na informację o ulicy, miejscowości/mieście i województwie/stanie:
 
 ```Python
+from pydantic import Field
+
 class Address(BaseModel):
     street: str = Field(..., description="Ulica, numer domu/bloku i ewentualnie mieszkania.")
     city: str = Field(..., description="Nazwa miejscowości – wszystkie litery muszą być wielkie, np. WARSZAWA.")
@@ -485,6 +502,19 @@ response.street, response.city, response.state, response.postal_code
 ```text
 ('Wawel 5', 'KRAKÓW', 'Małopolskie', '31-001')
 ```
+
+## Podsumowanie
+
+W projekcie pokazaliśmy, że odpowiedzi LLM-ów są zmienne: nawet przy identycznym pytaniu model może zwrócić różną treść, poziom szczegółowości oraz format. Jest to problematyczne, gdy wynik ma być automatycznie przetwarzany (np. parsowany, walidowany, używany w kolejnych krokach pipeline’u), a nie tylko czytany przez człowieka.
+
+Kolejne etapy eksperymentu ilustrują stopniowe zwiększanie kontroli nad wynikiem:
+- **Promptowanie bez ograniczeń** → największa swoboda, ale najniższa przewidywalność struktury i szumu informacyjnego.
+- **Doprecyzowanie wymagań w prompcie** (lista pól) → stabilniejsza struktura tekstowa, nadal jednak brak gwarancji formatu maszynowego.
+- **Prośba o JSON w treści promptu** → często działa, ale łatwo o warianty w stylu ` ```json ... ``` `, różne nazwy kluczy oraz różnice w zapisie (np. wielkość liter).
+- **Function Calling** → model zwraca ustrukturyzowane argumenty wywołania funkcji zgodne ze schematem, co upraszcza parsowanie i ogranicza warianty formatu.
+- **Structured Output + Pydantic (Instructor)** → definicja kontraktu danych jako modelu (Pydantic) oraz walidacja wyniku pozwalają na jeszcze większą kontrolę i łatwy dostęp do pojedynczych pól (np. `postal_code`).
+
+Wniosek praktyczny: im bardziej wynik ma być "produkcyjny" i maszynowo przetwarzany, tym mniej wystarcza sam prompt – a tym bardziej opłaca się stosować mechanizmy kontraktowania i walidacji odpowiedzi (schema / structured outputs / tool calls).
 
 ---
 
