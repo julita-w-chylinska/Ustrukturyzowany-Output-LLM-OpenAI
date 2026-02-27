@@ -473,6 +473,8 @@ response = client.chat.completions.create(
 print(response.postal_code)
 ```
 
+Odpowiedź:
+  
 ```text
 31-001
 ```
@@ -504,6 +506,8 @@ response.street, response.city, response.state, response.postal_code
 ```text
 ('Wawel 5', 'KRAKÓW', 'Małopolskie', '31-001')
 ```
+
+Należy tutaj zaznaczyć, że `Field(description=...)` wzmacnia instrukcję dla modelu, natomiast pełną egzekucję formatu zapewniają dopiero walidatory Pydantic.
 
 ## Podsumowanie
 
