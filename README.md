@@ -221,7 +221,7 @@ Smok Wawelski mieszka w:
 ==========
 ```
   
-Tym razem informacje mają już konkretną strukturę a odpowiedzi są stabilne. Co jednak jeśli potrzebowalibyśmy odwołać się do konkretnej informacji z tego outputu, chcąc ją wykorzystać w kolejnych krokach? W tym celu możemy poprosić LLM-a o zwrócenie odpowiedzi w formacie JSON.
+Teraz zwrócone informacje mają już konkretną strukturę, a odpowiedzi są stabilne. Co jednak jeśli potrzebowalibyśmy odwołać się do konkretnej informacji z tego outputu, chcąc ją wykorzystać w kolejnych krokach? W tym celu możemy poprosić LLM-a o zwrócenie odpowiedzi w formacie JSON.
 
 ## Output w formacie JSON
 
