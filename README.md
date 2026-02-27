@@ -47,6 +47,8 @@ resp = client.responses.create(
 print(resp.output_text)
 ```
 
+Odpowiedź:
+  
 ```text
 Działa, wszystko w porządku!
 ```
@@ -100,6 +102,7 @@ for ch in response.choices:
 ```
   
 Odpowiedź:
+  
 ```text
 Smok Wawelski, postać z polskich legend, według tradycji mieszkał w jaskini pod Wawelem w Krakowie, nad rzeką Wisłą. Jaskinia ta nazywana jest Smoczą Jamą. Legenda głosi, że smok terroryzował mieszkańców miasta, aż został pokonany przez dzielnego rycerza, co przyczyniło się do upadku jego panowania nad Krakowem. Smok Wawelski stał się symbolem miasta i przyciąga turystów z całego świata.
 ==========
@@ -113,9 +116,9 @@ Smok Wawelski to legendarna postać związana z Krakowem, a według legendy mies
 ==========
 ```
   
-Widzimy, że każdy z tych odpowiedzi zawiera różne informacje. Nie są one ze sobą sprzeczne, jednak ... rożne obszary/zakresy.
+Widzimy, że każdy z tych odpowiedzi zawiera różne informacje. Nie są one ze sobą sprzeczne, jednak pokrywają różne obszary dotyczące tematu miejsca przebywania czy też samej legendy smoka.
 
-Wyobraźmy sobie, że chodzi nam w tym pytaniu o konkretny adres, gdzie Smoka Wawelskiego znajdziemy.
+Wyobraźmy sobie, że w pytaniu o miejsce zamieszkania smoka, chodzi nam o konkretny adres.
   
 ## Doprecyzowanie rodzaju informacji, którą chcemy uzyskać
 
