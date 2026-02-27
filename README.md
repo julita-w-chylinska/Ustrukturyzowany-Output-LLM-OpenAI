@@ -75,11 +75,11 @@ response = client.chat.completions.create(
     ]
 )
 
-response.choices[0].message.content
+print(response.choices[0].message.content)
 ```
 
 ```text
-'Smok Wawelski, legenda związana z Krakowem, mieszkał w jaskini znajdującej się pod Wawelem, na wzgórzu Wawelskim. Jaskinia, znana jako "Smokowa Jama", jest teraz popularną atrakcją turystyczną. W legendach smok terroryzował mieszkańców Krakowa, aż został pokonany przez księcia Kraka, co zakończyło jego rządy terroru. Współczesny Kraków często wspomina tę legendę, a także można tam znaleźć pomnik Smoka Wawelskiego, który czasami "zionie" ogniem.'
+Smok Wawelski, legenda związana z Krakowem, mieszkał w jaskini znajdującej się pod Wawelem, na wzgórzu Wawelskim. Jaskinia, znana jako "Smokowa Jama", jest teraz popularną atrakcją turystyczną. W legendach smok terroryzował mieszkańców Krakowa, aż został pokonany przez księcia Kraka, co zakończyło jego rządy terroru. Współczesny Kraków często wspomina tę legendę, a także można tam znaleźć pomnik Smoka Wawelskiego, który czasami "zionie" ogniem.
 ```
   
 ## A gdyby zadać mu dokładnie takie samo pytanie 5 razy z rzędu?
@@ -363,12 +363,52 @@ response = client.chat.completions.create(
 )
 ```
 
-W ten sposób model zwraca wywołanie funkcji zamiast tekstu. Do samej odpowiedzi możemy dostać się wtedy w poniższy sposób (traktując ją jako argument tej funkcji):
+W ten sposób model zwraca wywołanie funkcji zamiast tekstu. Do samej odpowiedzi możemy dostać się wtedy w poniższy sposób (odwołując się do argumentu tej funkcji):
   
 ```Python
-response.choices[0].message.function_call.arguments
+print(response.choices[0].message.function_call.arguments)
 ```
 
+```text
+{"dish":"Naleśniki","ingredients":["1 szklanka mąki pszennej","2 jajka","1 i 1/2 szklanki mleka","1/4 szklanki wody gazowanej","szczypta soli","olej do smażenia","cukier (opcjonalnie)"],"steps":["W dużej misce wymieszaj mąkę i sól.","Dodaj jajka, mleko oraz wodę gazowaną i dokładnie wymieszaj, aż ciasto będzie gładkie.","Odstaw ciasto na około 30 minut, aby odpoczęło.","Rozgrzej patelnię z odrobiną oleju na średnim ogniu.","Wlej chochelkę ciasta na patelnię, a następnie przechyl ją, aby ciasto równomiernie pokryło dno patelni.","Smaż przez około 1-2 minuty, aż brzegi naleśnika będą lekko złote, a następnie obróć i smaż jeszcze przez 1-2 minuty z drugiej strony.","Powtarzaj, aż całe ciasto zostanie zużyte.","Podawaj naleśniki z ulubionymi dodatkami, takimi jak dżem, owoce czy bita śmietana."]}
+```
+
+Parsując JSON'a w ten sposób:
+
+```Python
+args = json.loads(response.choices[0].message.function_call.arguments)
+print(json.dumps(args, indent=2, ensure_ascii=False))
+```
+
+... otrzymamy czytelny przepis:
+
+```text
+{
+  "dish": "Naleśniki",
+  "ingredients": [
+    "1 szklanka mąki pszennej",
+    "2 jajka",
+    "1 i 1/2 szklanki mleka",
+    "1/4 szklanki wody gazowanej",
+    "szczypta soli",
+    "olej do smażenia",
+    "cukier (opcjonalnie)"
+  ],
+  "steps": [
+    "W dużej misce wymieszaj mąkę i sól.",
+    "Dodaj jajka, mleko oraz wodę gazowaną i dokładnie wymieszaj, aż ciasto będzie gładkie.",
+    "Odstaw ciasto na około 30 minut, aby odpoczęło.",
+    "Rozgrzej patelnię z odrobiną oleju na średnim ogniu.",
+    "Wlej chochelkę ciasta na patelnię, a następnie przechyl ją, aby ciasto równomiernie pokryło dno patelni.",
+    "Smaż przez około 1-2 minuty, aż brzegi naleśnika będą lekko złote, a następnie obróć i smaż jeszcze przez 1-2 minuty z drugiej strony.",
+    "Powtarzaj, aż całe ciasto zostanie zużyte.",
+    "Podawaj naleśniki z ulubionymi dodatkami, takimi jak dżem, owoce czy bita śmietana."
+  ]
+}
+```
+
+Dzięki Function Calling dostajemy output w sposób bardziej przewidywalny. Nie jest to jednak wystarczające, bo nawet jeśli mamy JSON na wyjściu, to nadal to nie jest ten poziom kontroli, który chcielibyśmy i moglibyśmy mieć. W tym celu dochodzimy do kolejnej warstwy, która nas może wesprzeć, czyli Structured Output.
+  
 ```Python
 ```
 
