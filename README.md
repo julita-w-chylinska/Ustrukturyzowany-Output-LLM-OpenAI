@@ -188,7 +188,7 @@ Smok Wawelski mieszka w:
 ==========
 Smok Wawelski mieszka w:
 
-- ulica: Wawel 5
+- ulica: Wawel
 - miejscowość: Kraków
 - województwo: małopolskie
 - kod pocztowy: 31-001
@@ -209,7 +209,7 @@ Smok Wawelski mieszka w:
 ==========
 ```
   
-Teraz informacje mają już konkretną strukturę, jednak zwróćmy uwagę, że jedna z odpowiedzi w wierszu "ulica" zawiera numer budynku, reszta samą nazwę ulicy. Co jednak jeśli potrzebowalibyśmy odwołać się do konkretnej informacji z tego outputu, chcąc ją gdzieś wykorzystać? Możemy poprosić LLM'a o zwrócenie odpowiedzi w formacie JSON.
+Teraz informacje mają już konkretną strukturę i odpowiedzi są stabilne. Co jednak jeśli potrzebowalibyśmy odwołać się do konkretnej informacji z tego outputu, chcąc ją gdzieś wykorzystać? Możemy poprosić LLM'a o zwrócenie odpowiedzi w formacie JSON.
 
 ## Output w formacie JSON
 
@@ -287,11 +287,33 @@ for ch in response.choices:
 ==========
 ````
 
-## Sparsowany i "znormalizowany" JSON 
+Gdyby teraz dodatkowo sparsować tę odpowiedź do słownika:
 
 ```Python
 import json
 
+parsed_json = json.loads(
+    response.choices[0].message.content.replace("json", "").replace("```", "")
+)
+  
+...pozwoliłoby to nam sięgnąć do konkretnej jej części, na przykład zapisując informację o miejscowości do zmiennej:
+
+```Python
+smok_miejscowosc = parsed_json["miejscowość"]
+```
+
+Sprawdźmy, co zapisało się pod zmienną `smok_miejscowosc`:
+
+```Python
+print(smok_miejscowosc)
+```
+```text
+Kraków
+```
+
+Wykorzystując format JSON możemy również przekształcić odpowiedź LLM'a na ładny format:
+  
+```Python
 parsed_json = json.loads(
     response.choices[0].message.content.replace("json", "").replace("```", "").replace("_", " ")
 )
@@ -306,7 +328,13 @@ miejscowość: Kraków
 województwo: Małopolskie
 kod pocztowy: 31-001
 ```
+  
+Jednak czy istnieje jakieś natywne wsparcie, które zagwarantuje poprawne wyświetlanie ustruktyrozowanego outputu w JSON'ie (również przy tych bardziej skomplikowanych/rozbudowanych)? Z pomocą przychdodzi tu technologia/mechanizm Function Calling.
 
+## Function Calling
+
+Na przykładzie sytuacji z poszukiwaniem przepisu na naleśniki
+  
 ```Python
 ```
 
