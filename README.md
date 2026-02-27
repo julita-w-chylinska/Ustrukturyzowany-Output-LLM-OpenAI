@@ -1,6 +1,6 @@
 # Structured-LLM-OpenAI
 
-Duże modele językowe (Large Language Models, LLM) mają to do siebie, że przy użyciu tych samych promptów generują różne odpowiedzi, nie tylko pomiędzy różnymi modelami, ale też używając tego samego modelu. 
+Duże modele językowe (Large Language Models, LLM) mają to do siebie, że przy użyciu tych samych promptów generują różne odpowiedzi, nie tylko pomiędzy różnymi modelami, ale też w obrębie tego samego. 
 
 Jest to przeszkodą, jeśli chcemy za każdym razem otrzymywać odpowiedzi o takiej samej strukturze. Dodatkowo LLM’y mogą generować różną ilość tekstu i podawać informacje, których nie potrzebujemy. Z pomocą przychodzi tu API konkretnych modeli LLM'ów i dostępne w nim mechanizmy Function Calling i Structured Output. 
 
@@ -50,7 +50,7 @@ print(resp.output_text)
 ```text
 Działa, wszystko w porządku!
 ```
-## Jak na pytanie "Gdzie mieszka Smok Wawelski?" odpowiedzą trzy różne modele (z różnych UI)
+## Jak na pytanie "Gdzie mieszka Smok Wawelski?" odpowiedzą modele od różnych dostawców (platform)?
   
 ChatGPT
   
