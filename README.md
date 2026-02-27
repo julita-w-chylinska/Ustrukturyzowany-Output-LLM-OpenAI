@@ -353,7 +353,7 @@ Jednak czy istnieje jakieś natywne wsparcie, które zagwarantuje poprawne wyśw
 
 ## Function Calling
 
-Na przykładzie sytuacji z poszukiwaniem przepisu na naleśniki, wypróbujemy – poprzez parametr `functions` – przekazanie LLM-owi schematu, którego ma się trzymać podczas generowania odpowiedzi. Dodatkowo, użyjemy wiadomości o roli `system` w parametrze `messages`, aby zdefiniować globalną instrukcję zachowania modelu (tzw. system prompt). Taka instrukcja działa jak nadrzędny kontekst dla całej rozmowy: narzuca, że asystent ma generować przepisy oraz preferować format JSON.
+Na przykładzie sytuacji z poszukiwaniem przepisu na naleśniki, wypróbujemy – poprzez parametr `functions` – przekazanie LLM-owi schematu, którego powinien się trzymać podczas generowania odpowiedzi. Dodatkowo, użyjemy wiadomości o roli `system` w parametrze `messages`, aby zdefiniować globalną instrukcję zachowania modelu (tzw. system prompt). Taka instrukcja działa jak nadrzędny kontekst dla całej rozmowy: narzuca, że asystent ma generować przepisy oraz preferować format JSON.
 
 ```Python
 schema = {
