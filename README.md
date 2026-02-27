@@ -362,8 +362,11 @@ response = client.chat.completions.create(
     function_call = "auto"
 )
 ```
+
+W ten sposób model zwraca wywołanie funkcji zamiast tekstu. Do samej odpowiedzi możemy dostać się wtedy w poniższy sposób (traktując ją jako argument tej funkcji):
   
 ```Python
+response.choices[0].message.function_call.arguments
 ```
 
 ```Python
