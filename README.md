@@ -62,7 +62,7 @@ Perpexity
   
 deepseek
   
-<img width="900" alt="image" src="https://github.com/user-attachments/assets/6ca11826-c42f-4437-960a-09e25d6970bc" />
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/6ca11826-c42f-4437-960a-09e25d6970bc" />
   
 ## Jak na to pytanie odpowiedziałby LLM z użyciem API?
 
@@ -77,6 +77,8 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
+Odpowiedź:
+  
 ```text
 Smok Wawelski, legenda związana z Krakowem, mieszkał w jaskini znajdującej się pod Wawelem, na wzgórzu Wawelskim. Jaskinia, znana jako "Smokowa Jama", jest teraz popularną atrakcją turystyczną. W legendach smok terroryzował mieszkańców Krakowa, aż został pokonany przez księcia Kraka, co zakończyło jego rządy terroru. Współczesny Kraków często wspomina tę legendę, a także można tam znaleźć pomnik Smoka Wawelskiego, który czasami "zionie" ogniem.
 ```
