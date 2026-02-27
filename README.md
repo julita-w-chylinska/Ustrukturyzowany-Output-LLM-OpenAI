@@ -287,7 +287,24 @@ for ch in response.choices:
 ==========
 ````
 
+## Sparsowany i "znormalizowany" JSON 
+
 ```Python
+import json
+
+parsed_json = json.loads(
+    response.choices[0].message.content.replace("json", "").replace("```", "").replace("_", " ")
+)
+
+for k, v in parsed_json.items():
+    print(f"{k}: {v}")
+```
+
+```text
+ulica: Smok Wawelski
+miejscowość: Kraków
+województwo: Małopolskie
+kod pocztowy: 31-001
 ```
 
 ```Python
