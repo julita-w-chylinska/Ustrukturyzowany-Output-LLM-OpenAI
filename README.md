@@ -39,12 +39,14 @@ client = OpenAI()
 ## Pierwsze próby wygenerowania odpowiedzi
 
 ```Python
-resp = client.responses.create(
-    model="gpt-4o-mini-2024-07-18",
-    input="Test: jeśli to działa, odpowiedz jednym zdaniem po polsku."
+response = client.chat.completions.create(
+    model = "gpt-4o-mini-2024-07-18",
+    messages = [
+        {"role": "user", "content": "Jeśli to działa, odpowiedz jednym zdaniem po polsku."}
+    ]
 )
 
-print(resp.output_text)
+print(response.choices[0].message.content)
 ```
 
 Odpowiedź:
