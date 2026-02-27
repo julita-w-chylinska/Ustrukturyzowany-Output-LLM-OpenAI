@@ -66,7 +66,7 @@ Działa, wszystko w porządku!
   
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/6ca11826-c42f-4437-960a-09e25d6970bc" />
   
-## Jak na to pytanie odpowiedziałby LLM z użyciem API?
+## Jak na to pytanie odpowiedziałby LLM od OpenAI z użyciem API?
 
 ```Python
 response = client.chat.completions.create(
@@ -116,9 +116,9 @@ Smok Wawelski to legendarna postać związana z Krakowem, a według legendy mies
 ==========
 ```
   
-Widzimy, że każdy z tych odpowiedzi zawiera różne informacje. Nie są one ze sobą sprzeczne, jednak pokrywają różne obszary dotyczące tematu miejsca przebywania czy też samej legendy smoka.
+Widzimy, że każdy z tych odpowiedzi zawiera różne informacje. Nie ma między nimi sprzeczności, ale różnią się zakresem i tym, które elementy tematu eksponują.
 
-Wyobraźmy sobie, że w pytaniu o miejsce zamieszkania smoka, chodzi nam o konkretny adres.
+Wyobraźmy sobie, że w pytaniu o miejsce zamieszkania smoka chodzi nam o konkretny adres.
   
 ## Doprecyzowanie rodzaju informacji, którą chcemy uzyskać
 
@@ -493,8 +493,3 @@ response.street, response.city, response.state, response.postal_code
 **LinkedIn**: [Julita Wawreszuk-Chylińska](http://www.linkedin.com/in/julita-w-chylinska)
 
 Dziękuję za Twoje zainteresowanie tym projektem!
-## Author: Julita Wawreszuk-Chylińska
-
-**LinkedIn**: [Julita Wawreszuk-Chylińska](http://www.linkedin.com/in/julita-w-chylinska)
-
-Thank you for your interest in this project!
