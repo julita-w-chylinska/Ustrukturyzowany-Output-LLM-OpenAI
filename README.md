@@ -432,7 +432,7 @@ Dzięki Function Calling dostajemy output w sposób bardziej przewidywalny. Nie 
 
 ## Structured Output + Pydantic
 
-W celu skorzystania z tej funkcjonalności, musimy wykonać najpierw następujące kroki:
+W celu skorzystania z tej funkcjonalności, wykonujemy najpierw następujące kroki:
   
 ```Python
 pip install instructor
