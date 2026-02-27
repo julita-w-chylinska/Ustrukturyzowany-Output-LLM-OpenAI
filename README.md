@@ -1,4 +1,4 @@
-# Structured-LLM-OpenAI
+# Ustrukturyzowany Output – LLM od OpenAI
 
 Duże modele językowe (Large Language Models, LLM) mają to do siebie, że przy użyciu tych samych promptów generują różne odpowiedzi, nie tylko pomiędzy różnymi modelami, ale też w obrębie tego samego. 
 
