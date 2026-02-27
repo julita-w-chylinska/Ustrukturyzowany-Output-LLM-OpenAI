@@ -343,7 +343,7 @@ for k, v in parsed_json.items():
 Odpowiedź:
   
 ```text
-ulica: Smok Wawelski
+ulica: Wawel
 miejscowość: Kraków
 województwo: Małopolskie
 kod pocztowy: 31-001
