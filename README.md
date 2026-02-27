@@ -295,7 +295,8 @@ import json
 parsed_json = json.loads(
     response.choices[0].message.content.replace("json", "").replace("```", "")
 )
-  
+```
+    
 ...pozwoliłoby to nam sięgnąć do konkretnej jej części, na przykład zapisując informację o miejscowości do zmiennej:
 
 ```Python
