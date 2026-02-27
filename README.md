@@ -1,4 +1,4 @@
-# Ustrukturyzowany-LLM-OpenAI
+# Structured-LLM-OpenAI
 
 Duże modele językowe (Large Language Models, LLM) mają to do siebie, że przy użyciu tych samych promptów generują różne odpowiedzi, nie tylko pomiędzy różnymi modelami, ale też używając tego samego modelu. 
 
@@ -51,17 +51,15 @@ print(resp.output_text)
 Działa, wszystko w porządku!
 ```
 ## Jak na pytanie "Gdzie mieszka Smok Wawelski?" odpowiedzą trzy różne modele (z różnych UI)
-
+  
 ChatGPT
   
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/aff8ef7d-2f6c-4c67-a50f-45f3a486fbec" />
-
+  
 Perpexity
   
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/a32b35f0-af01-45e0-afa9-b0e4e3a38ad1" />
   
-(w tym przypadku jeszcze propozycje dopytania)
-
 deepseek
   
 <img width="900" alt="image" src="https://github.com/user-attachments/assets/6ca11826-c42f-4437-960a-09e25d6970bc" />
