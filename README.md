@@ -239,7 +239,7 @@ for ch in response.choices:
     print("=" * 10)
 ```
     
-```text
+````text
 ```json
 {
   "ulica": "Wawel",
@@ -285,7 +285,7 @@ for ch in response.choices:
 }
 ```
 ==========
-```
+````
 
 ```Python
 ```
