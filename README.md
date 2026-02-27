@@ -1,19 +1,20 @@
 # Ustrukturyzowany-LLM-OpenAI
 
-Duże modele językowe (Large Language Models, LLM) mają to do siebie, że przy użyciu tych samych promptów generują różne odpowiedzi, nie tylko pomiędzy różnymi modelami [tu ewentualnie odniesienie do screenshotów], ale też używając tego samego modelu, jako że odpowiedź w pewnym stopniu jest oparta na losowości. 
+Duże modele językowe (Large Language Models, LLM) mają to do siebie, że przy użyciu tych samych promptów generują różne odpowiedzi, nie tylko pomiędzy różnymi modelami, ale też używając tego samego modelu. 
 
-Jest to przeszkodą, jeśli chcemy za każdym razem otrzymywać taką samą strukturę odpowiedzi. Dodatkowo LLM’y mogą generować różną ilość tekstu i podawać informacje, o które nie do końca nam chodzi. Z pomocą przychodzi tu API (Application Programming Interface, Interfejs Programowania Aplikacji) i dostępne w nim Function Calling i Structured Output. 
+Jest to przeszkodą, jeśli chcemy za każdym razem otrzymywać odpowiedzi o takiej samej strukturze. Dodatkowo LLM’y mogą generować różną ilość tekstu i podawać informacje, których nie potrzebujemy. Z pomocą przychodzi tu API konkretnych modeli LLM'ów i dostępne w nim mechanizmy Function Calling i Structured Output. 
 
-Ten projekt ma postać testowania możliwości tych funkcjonalności i będzie dotyczył API OpenAI, modelu gpt-4o-mini-2024-07-18. Używam do niego języka polskiego ze względu na używanie tego języka do promptów/inputów.
+Ten projekt ma postać testowania możliwości tych funkcjonalności i dotyczy API OpenAI, modelu gpt-4o-mini-2024-07-18. W tym repozytorium będę poługiwać się językiem polskim ze względu na używanie tego języka do promptów w tym projekcie.
 
 
-## Pięć niezbędnych kroków do rozpoczęcia pracy z API OpenAI w VS Code [ogólnie nazwać]
+## Pięć niezbędnych kroków do rozpoczęcia pracy z API OpenAI
 
 1. Utworzenie płatnego klucza API na platformie OpenAI
 
+Link:
 https://platform.openai.com/api-keys
 
-3. Instalacja biblioteki (?) openai w VS Code [ogólnie nazwać]
+3. Instalacja pakietu openai w środowisku Pythona
 
 ```Python
 pip install openai
@@ -30,7 +31,7 @@ setx OPENAI_API_KEY "TWÓJ_KLUCZ_TUTAJ"
 from openai import OpenAI
 ```
 
-5. Zdefiniowanie klienta? Jak to nazwać?
+5. Inicjalizacja klienta OpenAI
 
 ``` Python
 client = OpenAI()
