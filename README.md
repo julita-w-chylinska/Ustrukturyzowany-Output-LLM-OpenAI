@@ -407,13 +407,52 @@ print(json.dumps(args, indent=2, ensure_ascii=False))
 }
 ```
 
-Dzięki Function Calling dostajemy output w sposób bardziej przewidywalny. Nie jest to jednak wystarczające, bo nawet jeśli mamy JSON na wyjściu, to nadal to nie jest ten poziom kontroli, który chcielibyśmy i moglibyśmy mieć. W tym celu dochodzimy do kolejnej warstwy, która nas może wesprzeć, czyli Structured Output.
+Dzięki Function Calling dostajemy output w sposób bardziej przewidywalny. Nie jest to jednak wystarczające, ponieważ nawet jeśli mamy JSON na wyjściu, nadal nie jest to ten poziom kontroli, który chcielibyśmy i moglibyśmy mieć. W tym celu dochodzimy do kolejnej warstwy, która może nas wesprzeć, czyli Structured Output wraz z biblioteką Pydantic.
+
+## Structured Output + Pydantic
+
+W celu ... należy zainstalować i zaimportować [...]
   
 ```Python
+pip install instructor
+```
+  
+```Python
+from pydantic import BaseModel
+import instructor
+```
+  
+```Python
+client = instructor.from_openai(OpenAI())
+```
+
+Wróćmy do przykładu z adresem Smoka Wawelskiego.
+  
+... poprzez stworzenie klasy z [...]
+  
+```Python
+class Address(BaseModel):
+    street: str
+    city: str
+    state: str
+    postal_code: str
 ```
 
 ```Python
+response = client.chat.completions.create(
+    model = "gpt-4o-mini-2024-07-18",
+    messages = [
+        {"role": "user", "content": "Gdzie mieszka Smok Wawelski?"}
+    ],
+    response_model = Address
+)
 ```
 
-```Python
+Dzięki temu możemy w prosty sposób dotrzeć do informacji o samym kodzie pocztowym:
+
+```text
+print(response.postal_code)
 ```
+
+
+
