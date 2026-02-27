@@ -330,7 +330,7 @@ województwo: Małopolskie
 kod pocztowy: 31-001
 ```
   
-Jednak czy istnieje jakieś natywne wsparcie, które zagwarantuje poprawne wyświetlanie ustruktyrozowanego outputu w JSON'ie (również przy tych bardziej skomplikowanych/rozbudowanych)? Z pomocą przychdodzi tu technologia/mechanizm Function Calling.
+Jednak czy istnieje jakieś natywne wsparcie, które zagwarantuje poprawne wyświetlanie ustruktyrozowanego outputu w JSON'ie (również przy tych bardziej rozbudowanych)? Z pomocą przychdodzi tu mechanizm Function Calling.
 
 ## Function Calling
 
