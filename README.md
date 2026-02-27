@@ -428,7 +428,7 @@ client = instructor.from_openai(OpenAI())
 
 Wróćmy do przykładu z adresem Smoka Wawelskiego.
   
-... poprzez stworzenie klasy z [...]
+Poprzez stworzenie klasy `Address` z obiektami określającymi informacje, które chcemy otrzymać od LLM'a, a następnie przekazanie tej klasy do parametru `response_model`:
   
 ```Python
 class Address(BaseModel):
@@ -436,9 +436,7 @@ class Address(BaseModel):
     city: str
     state: str
     postal_code: str
-```
 
-```Python
 response = client.chat.completions.create(
     model = "gpt-4o-mini-2024-07-18",
     messages = [
@@ -448,11 +446,51 @@ response = client.chat.completions.create(
 )
 ```
 
-Dzięki temu możemy w prosty sposób dotrzeć do informacji o samym kodzie pocztowym:
+... możemy w prosty sposób dotrzeć do informacji o samym kodzie pocztowym:
 
-```text
+```Python
 print(response.postal_code)
 ```
 
+```text
+31-001
+```
 
+Dodatkowo, jeśli poszczególne części odpowiedzi LLM'a miałaby spełnić jakieś konkretne wymogi, możemy je dopisać za pomocą obiektu Field z biblioteki Pydantic. W poniższym przykładzie narzucamy format na informację o ulicy, miejscowości/mieście i województwie/stanie:
 
+```Python
+class Address(BaseModel):
+    street: str = Field(..., description="Ulica, numer domu/bloku i ewentualnie mieszkania.")
+    city: str = Field(..., description="Nazwa miejscowości – wszystkie litery muszą być wielkie, np. WARSZAWA.")
+    state: str = Field(..., description="Nazwa województwa – tylko pierwsza litera duża, np. Mazowieckie.")
+    postal_code: str
+
+response = client.chat.completions.create(
+    model = "gpt-4o-mini-2024-07-18",
+    messages = [
+        {"role": "user", "content": "Gdzie mieszka Smok Wawelski?"}
+    ],
+    response_model = Address
+)
+
+response.street, response.city, response.state, response.postal_code
+```
+
+... w wyniku czego otrzymamy poniższą, zgodną z wymogami odpowiedź:
+  
+```text
+('Wawel 5', 'KRAKÓW', 'Małopolskie', '31-001')
+```
+
+---
+
+## Autor: Julita Wawreszuk-Chylińska (w oparciu o tutorial DataWorkshop)
+
+**LinkedIn**: [Julita Wawreszuk-Chylińska](http://www.linkedin.com/in/julita-w-chylinska)
+
+Dziękuję za Twoje zainteresowanie tym projektem!
+## Author: Julita Wawreszuk-Chylińska
+
+**LinkedIn**: [Julita Wawreszuk-Chylińska](http://www.linkedin.com/in/julita-w-chylinska)
+
+Thank you for your interest in this project!
