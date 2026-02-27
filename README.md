@@ -153,7 +153,7 @@ Smok Wawelski mieszka w Krakowie, a jego legendarna siedziba znajduje się pod W
 ==========
 ```
 
-Mimo doprecyzowania naszej prośby, ponownie pojawia się problem różniących się – nie wszystkie zawierają pełny adres razem wraz kodem pocztowym (którego możemy potrzebować).
+Mimo doprecyzowania naszej prośby, ponownie pojawia się problem różniących się odpowiedzi – nie wszystkie zawierają pełny adres razem wraz kodem pocztowym (którego możemy potrzebować).
 
 ## Określmy teraz te informacje jeszcze precyzyjniej
 
