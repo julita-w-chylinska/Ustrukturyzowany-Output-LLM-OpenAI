@@ -54,17 +54,17 @@ Działa, wszystko w porządku!
 ```
 ## Jak na pytanie "Gdzie mieszka Smok Wawelski?" odpowiedzą modele od różnych dostawców (platform)?
   
-ChatGPT
+### ChatGPT
   
-<img width="700" alt="image" src="https://github.com/user-attachments/assets/aff8ef7d-2f6c-4c67-a50f-45f3a486fbec" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/aff8ef7d-2f6c-4c67-a50f-45f3a486fbec" />
   
-Perpexity
+### Perpexity
   
-<img width="700" alt="image" src="https://github.com/user-attachments/assets/a32b35f0-af01-45e0-afa9-b0e4e3a38ad1" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/a32b35f0-af01-45e0-afa9-b0e4e3a38ad1" />
   
-deepseek
+### DeepSeek
   
-<img width="700" alt="image" src="https://github.com/user-attachments/assets/6ca11826-c42f-4437-960a-09e25d6970bc" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/6ca11826-c42f-4437-960a-09e25d6970bc" />
   
 ## Jak na to pytanie odpowiedziałby LLM z użyciem API?
 
