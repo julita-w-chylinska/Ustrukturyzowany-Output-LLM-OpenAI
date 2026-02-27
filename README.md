@@ -52,7 +52,7 @@ Odpowiedź:
 ```text
 Działa, wszystko w porządku!
 ```
-## Jak na pytanie "Gdzie mieszka Smok Wawelski?" odpowiedzą modele od różnych dostawców (platform)?
+## Jak na pytanie "Gdzie mieszka Smok Wawelski?" odpowiedzą modele z różnych platform?
   
 ### ChatGPT
   
