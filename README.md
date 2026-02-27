@@ -9,19 +9,19 @@ Ten projekt ma postać testowania możliwości tych funkcjonalności i dotyczy A
 
 ## Pięć niezbędnych kroków do rozpoczęcia pracy z API OpenAI
 
-1. Utworzenie płatnego klucza API na platformie OpenAI
+1. Utworzenie klucza API oraz włączenie rozliczeń na platformie OpenAI
 
 Link:
-https://platform.openai.com/api-keys
+[OpenAI – API Keys](https://platform.openai.com/api-keys)
 
-3. Instalacja pakietu openai w środowisku Pythona
+2. Instalacja pakietu openai w środowisku Pythona
 
 ```Python
 pip install openai
 ```
 3. Ustawienie osobistego klucza API w zmiennych środowiskowych
 
-```
+```bash
 setx OPENAI_API_KEY "TWÓJ_KLUCZ_TUTAJ"
 ```
 
