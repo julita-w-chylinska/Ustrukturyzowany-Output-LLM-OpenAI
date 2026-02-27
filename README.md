@@ -118,7 +118,7 @@ Smok Wawelski to legendarna postać związana z Krakowem, a według legendy mies
 ==========
 ```
   
-Widzimy, że każdy z tych odpowiedzi zawiera różne informacje. Nie ma między nimi sprzeczności, ale różnią się zakresem i tym, które elementy tematu eksponują.
+Widzimy, że każda z tych odpowiedzi zawiera różne informacje. Nie ma między nimi sprzeczności, ale różnią się zakresem i tym, które elementy tematu eksponują.
 
 Wyobraźmy sobie, że w pytaniu o miejsce zamieszkania smoka chodzi nam o konkretny adres.
   
