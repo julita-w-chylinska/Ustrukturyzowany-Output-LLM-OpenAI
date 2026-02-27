@@ -46,7 +46,7 @@ resp = client.responses.create(
 print(resp.output_text)
 ```
 
-```Python
+```text
 Działa, wszystko w porządku!
 ```
 ## Jak na pytanie "Gdzie mieszka Smok Wawelski?" odpowiedzą trzy różne modele (z różnych UI)
@@ -78,7 +78,7 @@ response = client.chat.completions.create(
 response.choices[0].message.content
 ```
 
-```Python
+```text
 'Smok Wawelski, legenda związana z Krakowem, mieszkał w jaskini znajdującej się pod Wawelem, na wzgórzu Wawelskim. Jaskinia, znana jako "Smokowa Jama", jest teraz popularną atrakcją turystyczną. W legendach smok terroryzował mieszkańców Krakowa, aż został pokonany przez księcia Kraka, co zakończyło jego rządy terroru. Współczesny Kraków często wspomina tę legendę, a także można tam znaleźć pomnik Smoka Wawelskiego, który czasami "zionie" ogniem.'
 ```
   
@@ -98,7 +98,7 @@ for ch in response.choices:
     print("=" * 10)
 ```
   
-Output:
+Odpowiedź:
 ```text
 Smok Wawelski, postać z polskich legend, według tradycji mieszkał w jaskini pod Wawelem w Krakowie, nad rzeką Wisłą. Jaskinia ta nazywana jest Smoczą Jamą. Legenda głosi, że smok terroryzował mieszkańców miasta, aż został pokonany przez dzielnego rycerza, co przyczyniło się do upadku jego panowania nad Krakowem. Smok Wawelski stał się symbolem miasta i przyciąga turystów z całego świata.
 ==========
@@ -132,7 +132,7 @@ for ch in response.choices:
     print("=" * 10)
 ```
 
-```Python
+```text
 Smok Wawelski mieszka na Wawelu, w Krakowie, w Polsce. Jego legendarna jaskinia znajduje się pod Wzgórzem Wawelskim, w pobliżu zamku królewskiego. W rzeczywistości nie ma konkretnego adresu dla smoka, ponieważ jest to postać z legendy, ale ogólnie można powiedzieć, że jego „dom” to Zamek Wawelski, Wawel 5, 31-001 Kraków, Polska.
 ==========
 Smok Wawelski mieszka w Krakowie, pod Wawelem, przy Wawel 5. To miejsce jest znane z legendy o Smoku Wawelskim, który według tradycji zamieszkiwał jaskinię pod Wzgórzem Wawelskim.
@@ -171,7 +171,7 @@ for ch in response.choices:
     print("=" * 10)
 ```
 
-```Python
+```text
 Smok Wawelski mieszka w:
 
 - ulica: Wawel
@@ -239,7 +239,7 @@ for ch in response.choices:
     print("=" * 10)
 ```
     
-```Python
+```text
 ```json
 {
   "ulica": "Wawel",
