@@ -123,7 +123,9 @@ Widzimy, że każda z tych odpowiedzi zawiera różne informacje. Nie ma między
 Wyobraźmy sobie, że w pytaniu o miejsce zamieszkania smoka chodzi nam o konkretny adres.
   
 ## Doprecyzowanie rodzaju informacji, którą chcemy uzyskać
-
+  
+Tym razem do pytania "Gdzie mieszka Smok Wawelski?" dopisujemy zdanie "Zwróć adres.".
+  
 ```Python
 response = client.chat.completions.create(
     model = "gpt-4o-mini-2024-07-18",
@@ -153,7 +155,7 @@ Smok Wawelski mieszka w Krakowie, a jego legendarna siedziba znajduje się pod W
 ==========
 ```
 
-Mimo doprecyzowania naszej prośby, ponownie pojawia się problem różniących się odpowiedzi – nie wszystkie zawierają pełny adres razem wraz kodem pocztowym (którego możemy potrzebować).
+Mimo doprecyzowania naszej prośby, ponownie pojawia się problem różniących się odpowiedzi – nie wszystkie zawierają pełny adres wraz z kodem pocztowym (którego możemy potrzebować).
 
 ## Określmy teraz te informacje jeszcze precyzyjniej
 
@@ -479,7 +481,7 @@ Odpowiedź:
 31-001
 ```
 
-Dodatkowo, jeśli poszczególne części odpowiedzi LLM-a miałyby spełnić jakieś konkretne wymogi, np. co do ich formatu, możemy je dopisać za pomocą obiektu Field z biblioteki Pydantic. W poniższym przykładzie narzucamy format na informację o ulicy, miejscowości/mieście i województwie/stanie:
+Dodatkowo, jeśli poszczególne części odpowiedzi LLM-a miałyby spełnić jakieś konkretne wymogi, np. co do ich formatu, możemy te wymogi dopisać za pomocą obiektu Field z biblioteki Pydantic. W poniższym przykładzie narzucamy format na informację o ulicy, miejscowości/mieście i województwie/stanie:
 
 ```Python
 from pydantic import Field
@@ -501,7 +503,7 @@ response = client.chat.completions.create(
 response.street, response.city, response.state, response.postal_code
 ```
 
-... w wyniku czego otrzymamy poniższą, zgodną z wymogami odpowiedź:
+... w wyniku czego otrzymujemy poniższą, zgodną z wymogami odpowiedź:
   
 ```text
 ('Wawel 5', 'KRAKÓW', 'Małopolskie', '31-001')
@@ -511,7 +513,7 @@ Należy tutaj zaznaczyć, że `Field(description=...)` wzmacnia instrukcję dla 
 
 ## Podsumowanie
 
-W projekcie pokazaliśmy, że odpowiedzi LLM-ów są zmienne: nawet przy identycznym pytaniu model może zwrócić różną treść, poziom szczegółowości oraz format. Jest to problematyczne, gdy wynik ma być automatycznie przetwarzany (np. parsowany, walidowany, używany w kolejnych krokach pipeline’u), a nie tylko czytany przez człowieka.
+W projekcie pokazaliśmy, że odpowiedzi LLM-ów są zmienne: nawet przy identycznym pytaniu model może zwrócić różną treść, poziom szczegółowości oraz format. Jest to problematyczne, gdy wynik ma być automatycznie przetwarzany (np. parsowany, walidowany, używany w kolejnych krokach pipeline'u), a nie tylko czytany przez człowieka.
 
 Kolejne etapy eksperymentu ilustrują stopniowe zwiększanie kontroli nad wynikiem:
 - **Promptowanie bez ograniczeń** → największa swoboda, ale najniższa przewidywalność struktury i szumu informacyjnego.
@@ -520,7 +522,7 @@ Kolejne etapy eksperymentu ilustrują stopniowe zwiększanie kontroli nad wyniki
 - **Function Calling** → model zwraca ustrukturyzowane argumenty wywołania funkcji zgodne ze schematem, co upraszcza parsowanie i ogranicza warianty formatu.
 - **Structured Output + Pydantic (Instructor)** → definicja kontraktu danych jako modelu (Pydantic) oraz walidacja wyniku pozwalają na jeszcze większą kontrolę i łatwy dostęp do pojedynczych pól (np. `postal_code`).
 
-Wniosek praktyczny: im bardziej wynik ma być "produkcyjny" i maszynowo przetwarzany, tym mniej wystarcza sam prompt – a tym bardziej opłaca się stosować mechanizmy kontraktowania i walidacji odpowiedzi (schema / structured outputs / tool calls).
+Wniosek praktyczny: im bardziej wynik ma być "produkcyjny" i maszynowo przetwarzany, tym mniej wystarcza sam prompt – a tym bardziej opłaca się stosować mechanizmy kontraktowania i walidacji odpowiedzi (schema / structured outputs / function calling).
 
 ---
 
